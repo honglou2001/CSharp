@@ -1,0 +1,4 @@
+2015-06-09 15:48:53,323 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM9
+2015-06-09 15:48:53,323 [10] WARN  RNCloud.LogWarn - 建立接收上报数据线程
+2015-06-09 16:10:16,514 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM9
+2015-06-09 16:10:16,515 [9] WARN  RNCloud.LogWarn - 建立接收上报数据线程

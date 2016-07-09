@@ -1,0 +1,81 @@
+1.加密、解密
+	//解密
+	void un_seacret(u8 *str,u8 *dr)
+	{
+		u8	cnt,ab_v,len = 1,indx = 1;
+		cnt = ab_v = str[0]%10 + 10; 
+		while(len <= 100){	  		
+			if(indx == cnt){
+				ab_v++;
+				cnt += ab_v;
+				indx++;
+				continue;
+			}
+			dr[len - 1] = str[indx - 1];
+			indx++;
+			len++;							
+		}				 			
+	}
+	//加密
+	void seacret(u8 *str,u8 *dr)
+	{
+		u8 cnt,ad_v,len = 1,indx = 1;
+
+		cnt = ad_v = str[0]%10 + 10;
+		while(indx <= 110){
+			if(indx == cnt){
+				dr[indx - 1] = ad_v;
+				ad_v++;
+				cnt += ad_v;		
+			}
+			else if(len <= 100){
+				dr[indx - 1] = str[len - 1];
+				len++;
+			}	
+			else{
+				dr[indx - 1] = 0xff;
+			}
+			indx++;  
+		}
+	}
+
+2.16位CRC校验
+	u16 crc_r1(u8 *src,u8 len)
+	{
+		u16 res = 0xffff;
+		int i = -1;	
+		u8 j,flag;
+
+		while(++i < len){
+			res ^= src[i];
+			j = 0x80;
+			while(j){
+				flag = 0;
+				if(res & 0x0001)
+					flag = 1;
+				res >>= 1;
+				if(flag)
+					res ^= 0xa001;
+				j >>= 1;
+			}
+		}
+		return res;
+	}
+
+3.bin文件格式
+	************* 第1帧
+	...
+	************* 第N帧
+	*******	      文件信息
+	
+	说明：
+		帧格式：
+			112字节；
+			前面110字节经过加密的bin文件；
+			后面2字节对前110字节做16位crc校验，高字节前置，低字节后置。
+		文件信息：
+			7字节；
+			第1字节设备类型；
+			第2-5字节 版本号，小端格式；
+			第6-7字节总帧数，即N，小端格式。
+

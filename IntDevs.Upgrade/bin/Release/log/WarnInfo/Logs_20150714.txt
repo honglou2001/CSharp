@@ -1,0 +1,7 @@
+2015-07-14 09:43:22,107 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM10
+2015-07-14 09:45:30,474 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM10
+2015-07-14 09:48:51,896 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM10
+2015-07-14 09:50:41,213 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM10
+2015-07-14 09:59:08,850 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM10
+2015-07-14 09:59:52,062 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM10
+2015-07-14 10:05:58,671 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM10

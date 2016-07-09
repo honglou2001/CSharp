@@ -1,0 +1,123 @@
+2015-04-27 07:18:40,980 [10] INFO  RNCloud.LogAll - 启动！
+2015-04-27 07:20:04,178 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 07:20:18,612 [12] ERROR RNCloud.LogAll - Implement your communication part here (do HTTP POST or send e-mail, for example).
+Example:
+Error Message: 未将对象引用设置到对象的实例。Stack Trace:
+   在 RNCloud.Upgrade.FrmUpgrade.sendpackt() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpgrade.cs:行号 310
+   在 RNCloud.Upgrade.FrmUpgrade.task_do() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpgrade.cs:行号 377
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart()
+2015-04-27 07:21:40,496 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 07:22:03,836 [10] INFO  RNCloud.LogAll - 启动！
+2015-04-27 07:22:58,045 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 07:23:04,692 [13] ERROR RNCloud.LogAll - Implement your communication part here (do HTTP POST or send e-mail, for example).
+Example:
+Error Message: 索引超出了数组界限。Stack Trace:
+   在 RNCloud.Upgrade.FrmUpgrade.sendpackt() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpgrade.cs:行号 359
+   在 RNCloud.Upgrade.FrmUpgrade.task_do() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpgrade.cs:行号 374
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart()
+2015-04-27 07:28:35,748 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 07:28:48,373 [9] ERROR RNCloud.LogAll - 端口“COM1”不存在。
+2015-04-27 07:28:49,543 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM1
+2015-04-27 07:28:53,679 [10] INFO  RNCloud.LogAll - 启动！
+2015-04-27 07:28:58,041 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 07:31:14,524 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 07:31:19,810 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 07:33:40,051 [10] INFO  RNCloud.LogAll - 启动！
+2015-04-27 07:33:55,169 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 07:36:29,072 [10] INFO  RNCloud.LogAll - 启动！
+2015-04-27 07:36:45,238 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 07:38:09,891 [10] INFO  RNCloud.LogAll - 启动！
+2015-04-27 07:38:11,730 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 07:39:08,966 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 07:39:10,498 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 07:41:40,545 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 07:41:42,125 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 07:44:10,164 [10] INFO  RNCloud.LogAll - 启动！
+2015-04-27 07:44:13,213 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 09:30:16,192 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 09:36:42,463 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 09:38:49,663 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 09:38:59,693 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 09:39:01,072 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 09:40:07,939 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 09:40:09,643 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 09:43:57,010 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 09:43:58,871 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 09:46:05,351 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 09:46:09,013 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 09:48:23,617 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 09:48:25,209 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 09:50:12,444 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 09:50:15,010 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 09:51:14,494 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 09:51:18,341 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 09:53:49,159 [10] INFO  RNCloud.LogAll - 启动！
+2015-04-27 09:53:51,299 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 10:04:32,061 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 10:04:41,777 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 10:07:37,933 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 10:07:40,504 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 10:10:17,695 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 10:10:21,550 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 10:11:10,962 [12] ERROR RNCloud.LogAll - Implement your communication part here (do HTTP POST or send e-mail, for example).
+Example:
+Error Message: 索引超出了数组界限。Stack Trace:
+   在 RNCloud.Upgrade.FrmUpgrade.sendpackt() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpgrade.cs:行号 374
+   在 RNCloud.Upgrade.FrmUpgrade.task_do() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpgrade.cs:行号 392
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart()
+2015-04-27 10:12:53,605 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 10:12:55,370 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 10:13:59,080 [12] ERROR RNCloud.LogAll - Implement your communication part here (do HTTP POST or send e-mail, for example).
+Example:
+Error Message: 索引超出了数组界限。Stack Trace:
+   在 RNCloud.Upgrade.FrmUpgrade.sendpackt() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpgrade.cs:行号 373
+   在 RNCloud.Upgrade.FrmUpgrade.task_do() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpgrade.cs:行号 391
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart()
+2015-04-27 10:14:48,608 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 10:14:50,064 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 10:16:30,802 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 10:16:37,371 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 10:16:38,734 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 10:17:55,096 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 10:17:56,617 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 10:20:24,656 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 10:20:28,101 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 10:22:15,187 [10] INFO  RNCloud.LogAll - 启动！
+2015-04-27 10:22:16,682 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 10:26:26,137 [10] INFO  RNCloud.LogAll - 启动！
+2015-04-27 10:26:27,847 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 10:27:58,973 [10] INFO  RNCloud.LogAll - 启动！
+2015-04-27 10:28:00,335 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 10:29:23,163 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 10:29:37,327 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 10:31:28,132 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 10:31:36,590 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 11:19:32,024 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 11:19:34,208 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 11:27:17,454 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 11:27:19,294 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 11:34:36,069 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 11:34:39,517 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 14:05:06,747 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 14:10:23,295 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 14:11:33,555 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 14:12:22,180 [1] INFO  RNCloud.LogAll - 启动！
+2015-04-27 14:12:23,662 [1] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 14:13:10,033 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 14:13:11,562 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 14:19:24,932 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 14:19:26,445 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 14:22:30,066 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 14:22:33,202 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 14:25:20,845 [10] INFO  RNCloud.LogAll - 启动！
+2015-04-27 14:25:23,388 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 14:25:59,110 [10] INFO  RNCloud.LogAll - 启动！
+2015-04-27 14:26:01,060 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 14:26:57,858 [10] INFO  RNCloud.LogAll - 启动！
+2015-04-27 14:27:03,724 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
+2015-04-27 14:29:05,872 [9] INFO  RNCloud.LogAll - 启动！
+2015-04-27 14:29:09,553 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
