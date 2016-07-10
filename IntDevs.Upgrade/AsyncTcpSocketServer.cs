@@ -28,8 +28,10 @@ namespace IntDevs.Upgrade
 
         public bool IsListening { get { return _state == _listening; } }
         public int SessionCount { get { return _sessions.Count; } }
-      
-        public AsyncTcpSocketServer(string ip,int port)
+
+        Action<ConcurrentDictionary<string, AsyncTcpSocketSession>> _updateClientList;
+
+        public AsyncTcpSocketServer(string ip, int port, Action<ConcurrentDictionary<string, AsyncTcpSocketSession>> updateClientUI)
         {
 
             this.ListenedEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
@@ -37,6 +39,8 @@ namespace IntDevs.Upgrade
             _configuration = new AsyncTcpSocketServerConfiguration();
 
             _dispatcher = new SimpleMessageDispatcher();
+
+            _updateClientList = updateClientUI;
 
             Initialize();
         }
@@ -161,8 +165,10 @@ namespace IntDevs.Upgrade
 
             if (_sessions.TryAdd(session.SessionKey, session))
             {
-                LogHelper.InfoFormat("New session [{0}].", session);
+                _updateClientList(_sessions);
 
+                LogHelper.InfoFormat("New session [{0}].", session);
+               
                 try
                 {
                     await session.Start();
@@ -176,6 +182,8 @@ namespace IntDevs.Upgrade
                     AsyncTcpSocketSession throwAway;
                     if (_sessions.TryRemove(session.SessionKey, out throwAway))
                     {
+                        _updateClientList(_sessions);
+
                         LogHelper.InfoFormat("Close session [{0}].", throwAway);
                     }
                 }

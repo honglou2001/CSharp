@@ -141,7 +141,9 @@ namespace IntDevs.Upgrade
         {
             if (State != TcpSocketConnectionState.Connected)
             {
-                throw new InvalidOperationException("This session has not connected.");
+                //throw new InvalidOperationException("This session has not connected.");
+
+                LogHelper.Error("SendSync", new InvalidOperationException("This session has not connected."));
             }
 
             try
@@ -157,7 +159,8 @@ namespace IntDevs.Upgrade
             }
             catch (Exception ex)
             {
-                throw ex;
+                LogHelper.Error(ex.Message, ex);
+                //throw ex;
             }
         }
 

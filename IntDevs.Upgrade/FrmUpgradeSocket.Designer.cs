@@ -34,7 +34,6 @@
             this.btnResume = new System.Windows.Forms.Button();
             this.btnSuspend = new System.Windows.Forms.Button();
             this.btnGetSFVer = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btnUpgrade = new System.Windows.Forms.Button();
             this.lblFileInfo = new System.Windows.Forms.Label();
             this.txtFilePath = new System.Windows.Forms.TextBox();
@@ -43,6 +42,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtComNum = new System.Windows.Forms.TextBox();
             this.lblServerStatus = new System.Windows.Forms.Label();
+            this.lstClients = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label5
@@ -100,14 +104,6 @@
             this.btnGetSFVer.TabIndex = 35;
             this.btnGetSFVer.Text = "升级包版本";
             this.btnGetSFVer.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(11, 108);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(758, 263);
-            this.richTextBox1.TabIndex = 32;
-            this.richTextBox1.Text = "";
             // 
             // btnUpgrade
             // 
@@ -176,11 +172,63 @@
             this.lblServerStatus.TabIndex = 43;
             this.lblServerStatus.Text = "运行状态：";
             // 
+            // lstClients
+            // 
+            this.lstClients.FormattingEnabled = true;
+            this.lstClients.ItemHeight = 12;
+            this.lstClients.Location = new System.Drawing.Point(12, 132);
+            this.lstClients.Name = "lstClients";
+            this.lstClients.Size = new System.Drawing.Size(217, 244);
+            this.lstClients.TabIndex = 44;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 105);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(119, 12);
+            this.label4.TabIndex = 45;
+            this.label4.Text = "连接上服务器的客户:";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 12;
+            this.listBox1.Location = new System.Drawing.Point(250, 132);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(519, 244);
+            this.listBox1.TabIndex = 46;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(248, 105);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 12);
+            this.label2.TabIndex = 47;
+            this.label2.Text = "发送的消息:";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(350, 105);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(132, 16);
+            this.checkBox1.TabIndex = 48;
+            this.checkBox1.Text = "是否记录日志到文本";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // FrmUpgradeSocket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 385);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lstClients);
             this.Controls.Add(this.lblServerStatus);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtBaudRate);
@@ -188,7 +236,6 @@
             this.Controls.Add(this.btnResume);
             this.Controls.Add(this.btnSuspend);
             this.Controls.Add(this.btnGetSFVer);
-            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.btnUpgrade);
             this.Controls.Add(this.lblFileInfo);
             this.Controls.Add(this.txtFilePath);
@@ -210,7 +257,6 @@
         private System.Windows.Forms.Button btnResume;
         private System.Windows.Forms.Button btnSuspend;
         private System.Windows.Forms.Button btnGetSFVer;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button btnUpgrade;
         private System.Windows.Forms.Label lblFileInfo;
         private System.Windows.Forms.TextBox txtFilePath;
@@ -219,6 +265,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtComNum;
         private System.Windows.Forms.Label lblServerStatus;
+        private System.Windows.Forms.ListBox lstClients;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox checkBox1;
 
     }
 }

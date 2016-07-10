@@ -11,6 +11,7 @@ using System.IO.Ports;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Concurrent;
 
 
 namespace IntDevs.Upgrade
@@ -37,16 +38,18 @@ namespace IntDevs.Upgrade
         private static byte app_mode = 1;//下载tz6.0，下载6.0及sf程序
         private static bool isListen = false;
         private static AsyncTcpSocketServer socketServer = null;
-        private void RunThread()
-        {
-            if (ComTh == null)
-            {
-                ComTh = new Thread(new ThreadStart(task_do));
-                ComTh.IsBackground = true;
-                ComTh.SetApartmentState(ApartmentState.STA);
-                ComTh.Start();
-            }
-        }
+
+        private bool IsRecordLog = false;
+        //private void RunThread()
+        //{
+        //    if (ComTh == null)
+        //    {
+        //        ComTh = new Thread(new ThreadStart(task_do));
+        //        ComTh.IsBackground = true;
+        //        ComTh.SetApartmentState(ApartmentState.STA);
+        //        ComTh.Start();
+        //    }
+        //}
         private void InitLogConfig()
         {
             _log = log4net.LogManager.GetLogger("RNCloud.LogWarn");
@@ -83,87 +86,87 @@ namespace IntDevs.Upgrade
         }
 
         //初始化
-        public void InitialPort()
-        {
-            try
-            {
-                string comport = this.txtComNum.Text.Trim();
-                string baudrate = this.txtBaudRate.Text.Trim();
-                _serialPort = new System.IO.Ports.SerialPort();
-                _serialPort.PortName = comport;
-                _serialPort.BaudRate = int.Parse(baudrate);
-                _serialPort.DataBits = 8;
-                _serialPort.Parity = System.IO.Ports.Parity.None;
-                _serialPort.StopBits = System.IO.Ports.StopBits.One;
-                _serialPort.WriteTimeout = 2000;
-                _serialPort.ReadTimeout = -1;
-                _serialPort.RtsEnable = true;
-                _serialPort.DtrEnable = true;
+        //public void InitialPort()
+        //{
+        //    try
+        //    {
+        //        string comport = this.txtComNum.Text.Trim();
+        //        string baudrate = this.txtBaudRate.Text.Trim();
+        //        _serialPort = new System.IO.Ports.SerialPort();
+        //        _serialPort.PortName = comport;
+        //        _serialPort.BaudRate = int.Parse(baudrate);
+        //        _serialPort.DataBits = 8;
+        //        _serialPort.Parity = System.IO.Ports.Parity.None;
+        //        _serialPort.StopBits = System.IO.Ports.StopBits.One;
+        //        _serialPort.WriteTimeout = 2000;
+        //        _serialPort.ReadTimeout = -1;
+        //        _serialPort.RtsEnable = true;
+        //        _serialPort.DtrEnable = true;
 
-                //_serialPort.Handshake = System.IO.Ports.Handshake.RequestToSend;
-                _serialPort.ReceivedBytesThreshold = 1;
-                //设置数据流控制；数据传输的握手协议；
-                //_serialPort.Handshake = Handshake.None;
-                if (_serialPort.IsOpen)
-                {
-                    _serialPort.Close();
-                    System.Threading.Thread.Sleep(150);
-                }
-                else
-                {
-                    try
-                    {
-                        _serialPort.Open();
-                    }
-                    catch (System.Exception ex)
-                    {
-                        string str = string.Format("打开串口异常，应用程序需重新打开。");
-                        _logALL.Error(ex.Message);
-                        MessageBox.Show(str);                      
-                        Application.Exit();
-                        //this.Close();
-                    }
-                }                
-                _log.Warn(string.Format("成功打开串口:{0}", comport));
+        //        //_serialPort.Handshake = System.IO.Ports.Handshake.RequestToSend;
+        //        _serialPort.ReceivedBytesThreshold = 1;
+        //        //设置数据流控制；数据传输的握手协议；
+        //        //_serialPort.Handshake = Handshake.None;
+        //        if (_serialPort.IsOpen)
+        //        {
+        //            _serialPort.Close();
+        //            System.Threading.Thread.Sleep(150);
+        //        }
+        //        else
+        //        {
+        //            try
+        //            {
+        //                _serialPort.Open();
+        //            }
+        //            catch (System.Exception ex)
+        //            {
+        //                string str = string.Format("打开串口异常，应用程序需重新打开。");
+        //                _logALL.Error(ex.Message);
+        //                MessageBox.Show(str);                      
+        //                Application.Exit();
+        //                //this.Close();
+        //            }
+        //        }                
+        //        _log.Warn(string.Format("成功打开串口:{0}", comport));
 
-            }
-            catch (System.Exception ex)
-            {
-                throw ex;
-            }
-        }            
-        //打开串口
-        private void btnOpenPort_Click(object sender, EventArgs e)
-        {
-            string comnum = this.txtComNum.Text.Trim();
-            string baudrate = this.txtBaudRate.Text.Trim();
+        //    }
+        //    catch (System.Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}            
+        ////打开串口
+        //private void btnOpenPort_Click(object sender, EventArgs e)
+        //{
+        //    string comnum = this.txtComNum.Text.Trim();
+        //    string baudrate = this.txtBaudRate.Text.Trim();
 
-            if (string.IsNullOrEmpty(comnum) || string.IsNullOrEmpty(baudrate))
-            {
-                MessageBox.Show("串口号和波特率不能为空。");
-                return;
-            }
-            try
-            {
-                ConfigurationFile.UpdateVal("COMConfig", this.txtComNum.Text.Trim());
-                ConfigurationFile.UpdateVal("BaudRate", this.txtBaudRate.Text.Trim());
-            }
-            catch (System.Exception ex)
-            {
-                _logALL.Error(ex.Message);
-            }
+        //    if (string.IsNullOrEmpty(comnum) || string.IsNullOrEmpty(baudrate))
+        //    {
+        //        MessageBox.Show("串口号和波特率不能为空。");
+        //        return;
+        //    }
+        //    try
+        //    {
+        //        ConfigurationFile.UpdateVal("COMConfig", this.txtComNum.Text.Trim());
+        //        ConfigurationFile.UpdateVal("BaudRate", this.txtBaudRate.Text.Trim());
+        //    }
+        //    catch (System.Exception ex)
+        //    {
+        //        _logALL.Error(ex.Message);
+        //    }
 
-            try
-            {
-                InitialPort();
-                //this.btnOpenPort.Text = "串口已经打开";
-                //this.btnOpenPort.Enabled = false;
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }            
-        }
+        //    try
+        //    {
+        //        InitialPort();
+        //        //this.btnOpenPort.Text = "串口已经打开";
+        //        //this.btnOpenPort.Enabled = false;
+        //    }
+        //    catch (System.Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }            
+        //}
         //获取文件信息
         private void GetFileByte()
         {
@@ -200,7 +203,7 @@ namespace IntDevs.Upgrade
                         version = bytestr;
                     }
                 }
-                this.lblFileInfo.Text = string.Format("版本号：{0},文件大小：{1}Byte,{2}.{3}", version, length, length / 100, length % 100);
+                this.lblFileInfo.Text = string.Format("版本号：{0},文件大小：{1} byte,{2}.{3} k", version, length, length / 1024, length % 1024);
                 m_File_state = 1;
             }
         }        
@@ -217,7 +220,7 @@ namespace IntDevs.Upgrade
         private static Task BroadCastTask = null;
         private static CancellationTokenSource tokenSource;
         private static CancellationToken token;
-        private readonly ManualResetEvent _event = new ManualResetEvent(true);
+        private ManualResetEvent _event = new ManualResetEvent(true);
 
         //发送升级文件
         private void btnUpgrade_Click(object sender, EventArgs e)
@@ -271,23 +274,21 @@ namespace IntDevs.Upgrade
                 }
             }, token);
 
-            BroadCastTask.Wait();
+            //BroadCastTask.Wait();
+
+            //LogHelper.Info("Finished!");
         }
 
         private void SetCancel()
         {
-
             if (tokenSource != null)
             {
                 tokenSource.Cancel();
             }
-
         }
 
         private void SendPack()
         {
-  
-
             if (m_Send_state == 0)
                 return;
             int cnt1 = 100, cnt2 = 0, i = 0;
@@ -387,6 +388,14 @@ namespace IntDevs.Upgrade
             m_packt_indx++;
 
             socketServer.BroadcastSync(prg_packt);
+
+            string info = Tools.ByteToHexStr(prg_packt);
+            if (IsRecordLog)
+            {
+                LogHelper.InfoMsg(info);
+            }
+
+            UpdateSentMsgUI(info);
 
             if(m_packt_indx % 10 ==0)
             {
@@ -496,127 +505,127 @@ namespace IntDevs.Upgrade
             }
         }
         //
-        private static void sendpackt()
-        {
-            if (_serialPort != null && _serialPort.IsOpen) 
-            {
-                if (m_Send_state == 0)
-                    return;
-                int cnt1 = 100, cnt2 = 0, i = 0; 
-                int y = (int)(m_File_Len / 100);
-                if ((m_File_Len % 100) != 0)
-                    y += 1;
-                if (m_packt_indx >= y)
-                    m_packt_indx = 0;
-                int t2 = m_packt_indx * 100;
-                cnt2 = m_File_Bin.Length - 3 - m_packt_indx * 100;
-                if (cnt2 < 100)
-                {
-                    cnt1 = cnt2;
-                    cnt2 = 100 - cnt1;
-                }
-                else
-                    cnt2 = 0;
+        //private static void sendpackt()
+        //{
+        //    if (_serialPort != null && _serialPort.IsOpen) 
+        //    {
+        //        if (m_Send_state == 0)
+        //            return;
+        //        int cnt1 = 100, cnt2 = 0, i = 0; 
+        //        int y = (int)(m_File_Len / 100);
+        //        if ((m_File_Len % 100) != 0)
+        //            y += 1;
+        //        if (m_packt_indx >= y)
+        //            m_packt_indx = 0;
+        //        int t2 = m_packt_indx * 100;
+        //        cnt2 = m_File_Bin.Length - 3 - m_packt_indx * 100;
+        //        if (cnt2 < 100)
+        //        {
+        //            cnt1 = cnt2;
+        //            cnt2 = 100 - cnt1;
+        //        }
+        //        else
+        //            cnt2 = 0;
 
-                if (app_mode == 0)
-                {
-                    prg_packt[0] = 0x5A;
-                    prg_packt[1] = 0xFF;
-                    prg_packt[2] = 0xFF;
-                    prg_packt[3] = 0xFF;
-                    prg_packt[4] = 0xFF;
-                    prg_packt[5] = 113;
-                    prg_packt[6] = 0x51;
+        //        if (app_mode == 0)
+        //        {
+        //            prg_packt[0] = 0x5A;
+        //            prg_packt[1] = 0xFF;
+        //            prg_packt[2] = 0xFF;
+        //            prg_packt[3] = 0xFF;
+        //            prg_packt[4] = 0xFF;
+        //            prg_packt[5] = 113;
+        //            prg_packt[6] = 0x51;
 
-                    prg_packt[7] = 3;
+        //            prg_packt[7] = 3;
 
-                    prg_packt[8] = m_File_Ver[0];
-                    prg_packt[9] = m_File_Ver[1];
-                    prg_packt[10] = m_File_Ver[2];
+        //            prg_packt[8] = m_File_Ver[0];
+        //            prg_packt[9] = m_File_Ver[1];
+        //            prg_packt[10] = m_File_Ver[2];
 
-                    prg_packt[11] = (byte)((m_File_Len >> 24) & 0xff);
-                    prg_packt[12] = (byte)((m_File_Len >> 16) & 0xff);
-                    prg_packt[13] = (byte)((m_File_Len >> 8) & 0xff);
-                    prg_packt[14] = (byte)((m_File_Len >> 0) & 0xff);
+        //            prg_packt[11] = (byte)((m_File_Len >> 24) & 0xff);
+        //            prg_packt[12] = (byte)((m_File_Len >> 16) & 0xff);
+        //            prg_packt[13] = (byte)((m_File_Len >> 8) & 0xff);
+        //            prg_packt[14] = (byte)((m_File_Len >> 0) & 0xff);
                     
-                    prg_packt[15] = (byte)((t2 >> 24) & 0xff);
-                    prg_packt[16] = (byte)((t2 >> 16) & 0xff);
-                    prg_packt[17] = (byte)((t2 >> 8) & 0xff);
-                    prg_packt[18] = (byte)((t2 >> 0) & 0xff);
+        //            prg_packt[15] = (byte)((t2 >> 24) & 0xff);
+        //            prg_packt[16] = (byte)((t2 >> 16) & 0xff);
+        //            prg_packt[17] = (byte)((t2 >> 8) & 0xff);
+        //            prg_packt[18] = (byte)((t2 >> 0) & 0xff);
 
-                    i = 0;
-                    Array.Copy(m_File_Bin,t2,prg_packt,19,cnt1);
-                    if (cnt2 > 0)
-                    {
-                        i = 0;
-                        while (i < cnt2)
-                        {
-                            prg_packt[19 + cnt1 + i] = 0;
-                            i++;
-                        }
-                    }
+        //            i = 0;
+        //            Array.Copy(m_File_Bin,t2,prg_packt,19,cnt1);
+        //            if (cnt2 > 0)
+        //            {
+        //                i = 0;
+        //                while (i < cnt2)
+        //                {
+        //                    prg_packt[19 + cnt1 + i] = 0;
+        //                    i++;
+        //                }
+        //            }
 
-                    prg_packt[119] = m_ACK;
-                    prg_packt[120] = crc_8(prg_packt, 1, 119);
-                    prg_packt[121] = 0xA5;
-                }
-                else 
-                {
-                    prg_packt[17] = 3;
-                    prg_packt[18] = 0x03;
-                    prg_packt[19] = 44;
-                    prg_packt[20] = 121+1;
+        //            prg_packt[119] = m_ACK;
+        //            prg_packt[120] = crc_8(prg_packt, 1, 119);
+        //            prg_packt[121] = 0xA5;
+        //        }
+        //        else 
+        //        {
+        //            prg_packt[17] = 3;
+        //            prg_packt[18] = 0x03;
+        //            prg_packt[19] = 44;
+        //            prg_packt[20] = 121+1;
 
-                    prg_packt[21] = 0;
+        //            prg_packt[21] = 0;
 
-                    prg_packt[22] = 3;
+        //            prg_packt[22] = 3;
 
-                    prg_packt[23] = m_File_Ver[2];
-                    prg_packt[24] = m_File_Ver[1];
-                    prg_packt[25] = m_File_Ver[0];
-                    prg_packt[26] = 0;                    
+        //            prg_packt[23] = m_File_Ver[2];
+        //            prg_packt[24] = m_File_Ver[1];
+        //            prg_packt[25] = m_File_Ver[0];
+        //            prg_packt[26] = 0;                    
 
-                    prg_packt[27] = (byte)((y >> 0) & 0xff);
-                    prg_packt[28] = (byte)((y >> 8) & 0xff);
+        //            prg_packt[27] = (byte)((y >> 0) & 0xff);
+        //            prg_packt[28] = (byte)((y >> 8) & 0xff);
 
-                    prg_packt[29] = (byte)((m_packt_indx >> 0) & 0xff);
-                    prg_packt[30] = (byte)((m_packt_indx >> 8) & 0xff);
+        //            prg_packt[29] = (byte)((m_packt_indx >> 0) & 0xff);
+        //            prg_packt[30] = (byte)((m_packt_indx >> 8) & 0xff);
 
-                    i = 0;
-                    Array.Copy(m_File_Bin, t2, s_prgframe, 0, cnt1);
-                    if (cnt2 > 0)
-                    {
-                        i = 0;
-                        while (i < cnt2)
-                        {
-                            s_prgframe[0 + cnt1 + i] = 0;
-                            i++;
-                        }
-                    }
-                    seacret(s_prgframe, 0, ref scrt_prgframe, 0);
-                    Array.Copy(scrt_prgframe, 0, prg_packt, 31, 112);
-                }
-                {
-                    if (app_mode == 0)
-                    {                  
-                        _serialPort.Write(prg_packt, 0, 122);
-                    }
-                    else
-                        Tools.WriteCmdd(ref prg_packt, _serialPort);
-                }
+        //            i = 0;
+        //            Array.Copy(m_File_Bin, t2, s_prgframe, 0, cnt1);
+        //            if (cnt2 > 0)
+        //            {
+        //                i = 0;
+        //                while (i < cnt2)
+        //                {
+        //                    s_prgframe[0 + cnt1 + i] = 0;
+        //                    i++;
+        //                }
+        //            }
+        //            seacret(s_prgframe, 0, ref scrt_prgframe, 0);
+        //            Array.Copy(scrt_prgframe, 0, prg_packt, 31, 112);
+        //        }
+        //        {
+        //            if (app_mode == 0)
+        //            {                  
+        //                _serialPort.Write(prg_packt, 0, 122);
+        //            }
+        //            else
+        //                Tools.WriteCmdd(ref prg_packt, _serialPort);
+        //        }
 
-                m_packt_indx++;
-            }   
-        }
-        //
-        private void task_do()
-        {
-            while (true)
-            {
-                System.Threading.Thread.Sleep(50);
-                sendpackt();
-            }
-        }
+        //        m_packt_indx++;
+        //    }   
+        //}
+        ////
+        //private void task_do()
+        //{
+        //    while (true)
+        //    {
+        //        System.Threading.Thread.Sleep(50);
+        //        sendpackt();
+        //    }
+        //}
 
         private bool ComfirmStopListen()
         {
@@ -634,6 +643,67 @@ namespace IntDevs.Upgrade
             }
             return true;
         }
+
+        private void UpdateClientUI(ConcurrentDictionary<string, AsyncTcpSocketSession> clientSessions)
+        {
+            BeginInvoke(new Action(() =>
+            {
+                this.lstClients.Items.Clear();  // 清空客户列表
+
+                foreach (var session in clientSessions.Values)
+                {
+                    this.lstClients.Items.Add(session.ToString());
+                }              
+            }));
+        }
+
+        private int msgCount = 0;
+        private void UpdateSentMsgUI(string info)
+        {
+            // Is this called from a thread other than the one created
+            // the control
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Action(() =>
+                {
+                    UpdateListBox(info);
+
+                }));
+            }
+        }
+
+        private void UpdateListBox(string info)
+        {
+
+            this.listBox1.Items.Add(info);
+
+            msgCount++;
+            if (msgCount > 100)
+            {
+                this.listBox1.Items.Clear();
+                msgCount = 0;
+            }
+            //else
+            //{
+            //    this.richTextBox1.SelectionStart = this.richTextBox1.Text.Length;
+            //    this.richTextBox1.ScrollToCaret();
+            //}
+
+            //this.richTextBox1.AppendText(Environment.NewLine);
+
+            //msgCount++;
+            //if (msgCount > 100)
+            //{
+            //    this.richTextBox1.Clear();
+            //    msgCount = 0;
+            //}
+            //else
+            //{
+            //    this.richTextBox1.SelectionStart = this.richTextBox1.Text.Length;
+            //    this.richTextBox1.ScrollToCaret();
+            //}
+        }
+
         private void btnListen_Click(object sender, EventArgs e)
         {
             if (!ComfirmStopListen())
@@ -641,12 +711,14 @@ namespace IntDevs.Upgrade
                 return;
             }
 
+            Action<ConcurrentDictionary<string, AsyncTcpSocketSession>> action = UpdateClientUI;
+
             string server = this.txtComNum.Text.Trim();
             string port = this.txtBaudRate.Text.Trim();
 
             if (!isListen || socketServer == null)
             {
-                socketServer = new AsyncTcpSocketServer(server, int.Parse(port));
+                socketServer = new AsyncTcpSocketServer(server, int.Parse(port), action);
                 socketServer.Listen();
 
                 if (socketServer.IsListening)
@@ -674,6 +746,18 @@ namespace IntDevs.Upgrade
             {
                 this.btnGetFile.Text = "已获取升级文件";
                 this.btnGetFile.Enabled = false;
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(this.checkBox1.Checked)
+            {
+                IsRecordLog = true;
+            }
+            else
+            {
+                IsRecordLog = false;
             }
         } 
     }

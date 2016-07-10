@@ -1,84 +1,0 @@
-2015-06-05 11:27:32,712 [1] INFO  RNCloud.LogAll - 启动！
-2015-06-05 11:39:55,656 [10] INFO  RNCloud.LogAll - 启动！
-2015-06-05 11:40:17,723 [9] INFO  RNCloud.LogAll - 启动！
-2015-06-05 11:40:26,776 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
-2015-06-05 11:40:26,776 [9] WARN  RNCloud.LogWarn - 建立接收上报数据线程
-2015-06-05 11:40:45,125 [14] ERROR RNCloud.LogAll - Implement your communication part here (do HTTP POST or send e-mail, for example).
-Example:
-Error Message: 索引超出了数组界限。Stack Trace:
-   在 RNCloud.Upgrade.FrmUpic.houtaicaozuo() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpic.cs:行号 894
-   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
-   在 System.Threading.ThreadHelper.ThreadStart()
-2015-06-05 11:42:23,522 [14] ERROR RNCloud.LogAll - Implement your communication part here (do HTTP POST or send e-mail, for example).
-Example:
-Error Message: 索引超出了数组界限。Stack Trace:
-   在 RNCloud.Upgrade.FrmUpic.houtaicaozuo() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpic.cs:行号 894
-   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
-   在 System.Threading.ThreadHelper.ThreadStart()
-2015-06-05 11:42:59,065 [14] ERROR RNCloud.LogAll - Implement your communication part here (do HTTP POST or send e-mail, for example).
-Example:
-Error Message: 索引超出了数组界限。Stack Trace:
-   在 RNCloud.Upgrade.FrmUpic.houtaicaozuo() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpic.cs:行号 894
-   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
-   在 System.Threading.ThreadHelper.ThreadStart()
-2015-06-05 11:43:17,899 [14] ERROR RNCloud.LogAll - Implement your communication part here (do HTTP POST or send e-mail, for example).
-Example:
-Error Message: 索引超出了数组界限。Stack Trace:
-   在 RNCloud.Upgrade.FrmUpic.houtaicaozuo() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpic.cs:行号 894
-   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
-   在 System.Threading.ThreadHelper.ThreadStart()
-2015-06-05 11:46:04,782 [14] ERROR RNCloud.LogAll - Implement your communication part here (do HTTP POST or send e-mail, for example).
-Example:
-Error Message: 索引超出了数组界限。Stack Trace:
-   在 RNCloud.Upgrade.FrmUpic.houtaicaozuo() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpic.cs:行号 894
-   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
-   在 System.Threading.ThreadHelper.ThreadStart()
-2015-06-05 11:46:13,424 [14] ERROR RNCloud.LogAll - Implement your communication part here (do HTTP POST or send e-mail, for example).
-Example:
-Error Message: 索引超出了数组界限。Stack Trace:
-   在 RNCloud.Upgrade.FrmUpic.houtaicaozuo() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpic.cs:行号 894
-   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
-   在 System.Threading.ThreadHelper.ThreadStart()
-2015-06-05 11:46:17,413 [14] ERROR RNCloud.LogAll - Implement your communication part here (do HTTP POST or send e-mail, for example).
-Example:
-Error Message: 索引超出了数组界限。Stack Trace:
-   在 RNCloud.Upgrade.FrmUpic.houtaicaozuo() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpic.cs:行号 894
-   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
-   在 System.Threading.ThreadHelper.ThreadStart()
-2015-06-05 11:46:29,428 [14] ERROR RNCloud.LogAll - Implement your communication part here (do HTTP POST or send e-mail, for example).
-Example:
-Error Message: 索引超出了数组界限。Stack Trace:
-   在 RNCloud.Upgrade.FrmUpic.houtaicaozuo() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpic.cs:行号 894
-   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
-   在 System.Threading.ThreadHelper.ThreadStart()
-2015-06-05 11:46:37,841 [10] INFO  RNCloud.LogAll - 启动！
-2015-06-05 11:46:42,531 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
-2015-06-05 11:46:42,531 [10] WARN  RNCloud.LogWarn - 建立接收上报数据线程
-2015-06-05 11:48:12,370 [15] ERROR RNCloud.LogAll - Implement your communication part here (do HTTP POST or send e-mail, for example).
-Example:
-Error Message: 索引超出了数组界限。Stack Trace:
-   在 RNCloud.Upgrade.FrmUpic.houtaicaozuo() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpic.cs:行号 894
-   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
-   在 System.Threading.ThreadHelper.ThreadStart()
-2015-06-05 11:50:30,140 [9] INFO  RNCloud.LogAll - 启动！
-2015-06-05 11:55:21,894 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
-2015-06-05 11:55:21,894 [9] WARN  RNCloud.LogWarn - 建立接收上报数据线程
-2015-06-05 16:02:07,529 [9] INFO  RNCloud.LogAll - 启动！
-2015-06-05 16:02:12,264 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
-2015-06-05 16:02:12,264 [9] WARN  RNCloud.LogWarn - 建立接收上报数据线程
-2015-06-05 16:04:42,698 [10] INFO  RNCloud.LogAll - 启动！
-2015-06-05 16:04:47,132 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
-2015-06-05 16:04:47,133 [10] WARN  RNCloud.LogWarn - 建立接收上报数据线程
-2015-06-05 16:07:04,465 [9] INFO  RNCloud.LogAll - 启动！
-2015-06-05 16:07:09,101 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
-2015-06-05 16:07:09,101 [9] WARN  RNCloud.LogWarn - 建立接收上报数据线程
-2015-06-05 16:25:40,929 [9] INFO  RNCloud.LogAll - 启动！
-2015-06-05 16:26:11,770 [10] INFO  RNCloud.LogAll - 启动！
-2015-06-05 16:26:15,408 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
-2015-06-05 16:26:15,408 [10] WARN  RNCloud.LogWarn - 建立接收上报数据线程
-2015-06-05 16:28:24,479 [10] INFO  RNCloud.LogAll - 启动！
-2015-06-05 16:28:28,413 [10] WARN  RNCloud.LogWarn - 成功打开串口:COM3
-2015-06-05 16:28:28,413 [10] WARN  RNCloud.LogWarn - 建立接收上报数据线程
-2015-06-05 16:33:54,472 [9] INFO  RNCloud.LogAll - 启动！
-2015-06-05 16:34:01,171 [9] WARN  RNCloud.LogWarn - 成功打开串口:COM3
-2015-06-05 16:34:01,172 [9] WARN  RNCloud.LogWarn - 建立接收上报数据线程

@@ -1,13 +1,0 @@
-2015-06-09 15:54:34,030 [15] ERROR RNCloud.LogAll - Implement your communication part here (do HTTP POST or send e-mail, for example).
-Example:
-Error Message: 文件“E:\myupproject\RNCloud\RNCloud.Upgrade\bin\Release\snrecord\SNLog-SF.csv”正由另一进程使用，因此该进程无法访问该文件。Stack Trace:
-   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
-   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy)
-   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
-   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
-   在 System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize)
-   在 System.IO.StreamReader..ctor(String path, Encoding encoding)
-   在 RNCloud.Upgrade.Tools.CheckSN2Exist(String& sn1, String sn2, String fileName) 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\Tools.cs:行号 674
-   在 RNCloud.Upgrade.FrmUpic.houtaicaozuo() 位置 e:\myupproject\RNCloud\RNCloud.Upgrade\FrmUpic.cs:行号 769
-   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
-   在 System.Threading.ThreadHelper.ThreadStart()

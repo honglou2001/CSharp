@@ -12,4 +12,3 @@ E:\github\CSharp\IntDevs.Upgrade\obj\Debug\IntDevs.Upgrade.Properties.Resources.
 E:\github\CSharp\IntDevs.Upgrade\obj\Debug\IntDevsTools.exe
 E:\github\CSharp\IntDevs.Upgrade\obj\Debug\IntDevsTools.pdb
 E:\github\CSharp\IntDevs.Upgrade\obj\Debug\IntDevs.Upgrade.FrmUpgradeSocket.resources
-E:\github\CSharp\IntDevs.Upgrade\obj\Debug\IntDevs.Upgrade.csprojResolveAssemblyReference.cache
