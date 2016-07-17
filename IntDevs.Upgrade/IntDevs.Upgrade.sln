@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntDevs.Upgrade", "IntDevs.Upgrade.csproj", "{4EA7F03B-AB1E-4843-8AFB-85D30CC5FD1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntDevs.SocketClient", "..\IntDevs.SocketClient\IntDevs.SocketClient.csproj", "{62FBF40D-CEBD-4794-9A61-91E61958B73E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4EA7F03B-AB1E-4843-8AFB-85D30CC5FD1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EA7F03B-AB1E-4843-8AFB-85D30CC5FD1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EA7F03B-AB1E-4843-8AFB-85D30CC5FD1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62FBF40D-CEBD-4794-9A61-91E61958B73E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62FBF40D-CEBD-4794-9A61-91E61958B73E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62FBF40D-CEBD-4794-9A61-91E61958B73E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62FBF40D-CEBD-4794-9A61-91E61958B73E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

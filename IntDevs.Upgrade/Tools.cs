@@ -22,7 +22,21 @@ namespace IntDevs.Upgrade
         public static string[] sysdevinfo = { "秘盒","","SF" };
 
         private static log4net.ILog _log = log4net.LogManager.GetLogger("RNCloud.LogWarn");
-       
+
+        public static byte[] HexStringToByteArray(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+            {
+                return null;
+            }
+            //16进制字符串转化为字节数组
+            s = s.ToLower().Replace("0x", "").Replace(" ", "");
+            byte[] buffer = new byte[s.Length / 2];
+            for (int i = 0; i < s.Length; i += 2)
+                buffer[i / 2] = (byte)Convert.ToByte(s.Substring(i, 2), 16);
+            return buffer;
+        }
+
         //
         public static string ByteToHexStr(byte[] bytes)
         {
@@ -94,6 +108,7 @@ namespace IntDevs.Upgrade
                 }
                 catch (System.Exception ex)
                 {
+                    throw ex;
                     //_logALL.Error("WriteCommand-发送数据-" + ex.ToString());
                 }
                 finally

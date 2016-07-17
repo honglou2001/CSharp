@@ -30,8 +30,9 @@ namespace IntDevs.Upgrade
         public int SessionCount { get { return _sessions.Count; } }
 
         Action<ConcurrentDictionary<string, AsyncTcpSocketSession>> _updateClientList;
+        Action<string> _msgUiReceivedAction;
 
-        public AsyncTcpSocketServer(string ip, int port, Action<ConcurrentDictionary<string, AsyncTcpSocketSession>> updateClientUI)
+        public AsyncTcpSocketServer(string ip, int port, Action<ConcurrentDictionary<string, AsyncTcpSocketSession>> updateClientUI,Action<string> uiAction)
         {
 
             this.ListenedEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
@@ -41,6 +42,8 @@ namespace IntDevs.Upgrade
             _dispatcher = new SimpleMessageDispatcher();
 
             _updateClientList = updateClientUI;
+
+            _msgUiReceivedAction = uiAction;
 
             Initialize();
         }
@@ -161,7 +164,7 @@ namespace IntDevs.Upgrade
         }
         private async Task Process(TcpClient acceptedTcpClient)
         {
-            var session = new AsyncTcpSocketSession(acceptedTcpClient, _configuration, _bufferManager, _dispatcher,this);
+            var session = new AsyncTcpSocketSession(acceptedTcpClient, _configuration, _bufferManager, _dispatcher, this, _msgUiReceivedAction);
 
             if (_sessions.TryAdd(session.SessionKey, session))
             {

@@ -18,7 +18,7 @@ namespace IntDevs.Upgrade
 {
     public partial class FrmUpgradeSocket : Form
     {
-        private static SerialPort _serialPort;
+        //private static SerialPort _serialPort;
         private static log4net.ILog _log = null;
         private static log4net.ILog _logFile = null;
         private static log4net.ILog _logALL = null;
@@ -28,28 +28,18 @@ namespace IntDevs.Upgrade
         private static byte[] m_File_Ver = new byte[3];
         private static byte m_File_state = 0;
         private static byte m_Send_state = 0;
-        private static byte m_Send_enable = 0;
+        //private static byte m_Send_enable = 0;
         private static byte[] prg_packt = new byte[149];//默认分配1页内存，并始终限制不允许超过  
         private static int m_packt_indx = 0;
         private static byte m_ACK = 0;
-
-        private static Thread ComTh = null;
 
         private static byte app_mode = 1;//下载tz6.0，下载6.0及sf程序
         private static bool isListen = false;
         private static AsyncTcpSocketServer socketServer = null;
 
-        private bool IsRecordLog = false;
-        //private void RunThread()
-        //{
-        //    if (ComTh == null)
-        //    {
-        //        ComTh = new Thread(new ThreadStart(task_do));
-        //        ComTh.IsBackground = true;
-        //        ComTh.SetApartmentState(ApartmentState.STA);
-        //        ComTh.Start();
-        //    }
-        //}
+        private bool IsRecordSendLog = false;
+        private bool IsRecordReceivedLog = false;
+ 
         private void InitLogConfig()
         {
             _log = log4net.LogManager.GetLogger("RNCloud.LogWarn");
@@ -74,99 +64,8 @@ namespace IntDevs.Upgrade
                 _logALL.Error(errMsg);
                 MessageBox.Show(errMsg);
             }
-            //RunThread();
         }
-
-        
-        
-
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        //初始化
-        //public void InitialPort()
-        //{
-        //    try
-        //    {
-        //        string comport = this.txtComNum.Text.Trim();
-        //        string baudrate = this.txtBaudRate.Text.Trim();
-        //        _serialPort = new System.IO.Ports.SerialPort();
-        //        _serialPort.PortName = comport;
-        //        _serialPort.BaudRate = int.Parse(baudrate);
-        //        _serialPort.DataBits = 8;
-        //        _serialPort.Parity = System.IO.Ports.Parity.None;
-        //        _serialPort.StopBits = System.IO.Ports.StopBits.One;
-        //        _serialPort.WriteTimeout = 2000;
-        //        _serialPort.ReadTimeout = -1;
-        //        _serialPort.RtsEnable = true;
-        //        _serialPort.DtrEnable = true;
-
-        //        //_serialPort.Handshake = System.IO.Ports.Handshake.RequestToSend;
-        //        _serialPort.ReceivedBytesThreshold = 1;
-        //        //设置数据流控制；数据传输的握手协议；
-        //        //_serialPort.Handshake = Handshake.None;
-        //        if (_serialPort.IsOpen)
-        //        {
-        //            _serialPort.Close();
-        //            System.Threading.Thread.Sleep(150);
-        //        }
-        //        else
-        //        {
-        //            try
-        //            {
-        //                _serialPort.Open();
-        //            }
-        //            catch (System.Exception ex)
-        //            {
-        //                string str = string.Format("打开串口异常，应用程序需重新打开。");
-        //                _logALL.Error(ex.Message);
-        //                MessageBox.Show(str);                      
-        //                Application.Exit();
-        //                //this.Close();
-        //            }
-        //        }                
-        //        _log.Warn(string.Format("成功打开串口:{0}", comport));
-
-        //    }
-        //    catch (System.Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}            
-        ////打开串口
-        //private void btnOpenPort_Click(object sender, EventArgs e)
-        //{
-        //    string comnum = this.txtComNum.Text.Trim();
-        //    string baudrate = this.txtBaudRate.Text.Trim();
-
-        //    if (string.IsNullOrEmpty(comnum) || string.IsNullOrEmpty(baudrate))
-        //    {
-        //        MessageBox.Show("串口号和波特率不能为空。");
-        //        return;
-        //    }
-        //    try
-        //    {
-        //        ConfigurationFile.UpdateVal("COMConfig", this.txtComNum.Text.Trim());
-        //        ConfigurationFile.UpdateVal("BaudRate", this.txtBaudRate.Text.Trim());
-        //    }
-        //    catch (System.Exception ex)
-        //    {
-        //        _logALL.Error(ex.Message);
-        //    }
-
-        //    try
-        //    {
-        //        InitialPort();
-        //        //this.btnOpenPort.Text = "串口已经打开";
-        //        //this.btnOpenPort.Enabled = false;
-        //    }
-        //    catch (System.Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }            
-        //}
+             
         //获取文件信息
         private void GetFileByte()
         {
@@ -238,7 +137,7 @@ namespace IntDevs.Upgrade
                 return;
             }
             //打开发送
-            m_Send_enable = 1;
+            //m_Send_enable = 1;
             m_Send_state = 1;
 
             this.btnUpgrade.Enabled = false;
@@ -390,7 +289,7 @@ namespace IntDevs.Upgrade
             socketServer.BroadcastSync(prg_packt);
 
             string info = Tools.ByteToHexStr(prg_packt);
-            if (IsRecordLog)
+            if (IsRecordSendLog)
             {
                 LogHelper.InfoMsg(info);
             }
@@ -415,49 +314,29 @@ namespace IntDevs.Upgrade
           
            
         }
-        //获取版本
-        private void btnGetSFVer_Click_1(object sender, EventArgs e)
-        {
-            return;
-        }
-        //
-        private void btnVerResponse_Click(object sender, EventArgs e)
-        {            
-            
-        }
         //暂停
         private void btnSuspend_Click(object sender, EventArgs e)
         {
-            //if (m_Send_state == 1 && m_Send_enable == 1)
-            //{
-            //    m_Send_state = 0;
-                this.btnSuspend.Enabled = false;
-                this.btnResume.Enabled = true;
+            SetBtnEnable(true);
+        }
 
-                
-            //}
-
+        private void SetBtnEnable(bool resume)
+        {
+            if(resume)
+            {
                 _event.Reset();
+            }
+            else
+            {
+                _event.Set();
+            }
+            this.btnSuspend.Enabled = !resume;
+            this.btnResume.Enabled = resume;           
         }
         //继续
         private void btnResume_Click(object sender, EventArgs e)
         {
-            //if (m_Send_state == 0 && m_Send_enable == 1)
-            //{
-            //    m_Send_state = 1;
-                this.btnResume.Enabled = false;
-                this.btnSuspend.Enabled = true;
-
-            //}
-
-                _event.Set();
-        }
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {            
-        }        
-        private void btnListenMB_Click(object sender, EventArgs e)
-        {
-            return;
+            SetBtnEnable(false);
         }
 
         private static byte crc_8(byte[] s, int indx, int cnt)
@@ -650,6 +529,15 @@ namespace IntDevs.Upgrade
             {
                 this.lstClients.Items.Clear();  // 清空客户列表
 
+                if (clientSessions.Count == 0)
+                {
+                    SetBtnEnable(true);
+                }
+                else
+                {
+                    SetBtnEnable(false);
+                }
+
                 foreach (var session in clientSessions.Values)
                 {
                     this.lstClients.Items.Add(session.ToString());
@@ -657,7 +545,7 @@ namespace IntDevs.Upgrade
             }));
         }
 
-        private int msgCount = 0;
+        private int msgSendCount = 0;
         private void UpdateSentMsgUI(string info)
         {
             // Is this called from a thread other than the one created
@@ -675,35 +563,50 @@ namespace IntDevs.Upgrade
         private void UpdateListBox(string info)
         {
 
+            if (this.IsRecordReceivedLog)
+            {
+                LogHelper.InfoMsg(info);
+            }
+
             this.listBox1.Items.Add(info);
 
-            msgCount++;
-            if (msgCount > 100)
+            msgSendCount++;
+            if (msgSendCount > 100)
             {
                 this.listBox1.Items.Clear();
-                msgCount = 0;
+                msgSendCount = 0;
             }
-            //else
-            //{
-            //    this.richTextBox1.SelectionStart = this.richTextBox1.Text.Length;
-            //    this.richTextBox1.ScrollToCaret();
-            //}
 
-            //this.richTextBox1.AppendText(Environment.NewLine);
-
-            //msgCount++;
-            //if (msgCount > 100)
-            //{
-            //    this.richTextBox1.Clear();
-            //    msgCount = 0;
-            //}
-            //else
-            //{
-            //    this.richTextBox1.SelectionStart = this.richTextBox1.Text.Length;
-            //    this.richTextBox1.ScrollToCaret();
-            //}
         }
 
+
+        private void UpdateReceivedMsgUI(string info)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Action(() =>
+                {
+                    UpdateReceBox(info);
+
+                }));
+            }
+        }
+
+        private int msgReceivedCount = 0;
+
+        private void UpdateReceBox(string info)
+        {
+
+            this.lstBoxRec.Items.Add(info);
+
+            msgReceivedCount++;
+            if (msgReceivedCount > 100)
+            {
+                this.lstBoxRec.Items.Clear();
+                msgReceivedCount = 0;
+            }
+
+        }
         private void btnListen_Click(object sender, EventArgs e)
         {
             if (!ComfirmStopListen())
@@ -711,14 +614,17 @@ namespace IntDevs.Upgrade
                 return;
             }
 
-            Action<ConcurrentDictionary<string, AsyncTcpSocketSession>> action = UpdateClientUI;
+            Action<ConcurrentDictionary<string, AsyncTcpSocketSession>> uiSendction = UpdateClientUI;
+            Action<string> uiReceivedAction = UpdateReceivedMsgUI;
 
             string server = this.txtComNum.Text.Trim();
             string port = this.txtBaudRate.Text.Trim();
 
             if (!isListen || socketServer == null)
             {
-                socketServer = new AsyncTcpSocketServer(server, int.Parse(port), action);
+
+
+                socketServer = new AsyncTcpSocketServer(server, int.Parse(port), uiSendction, uiReceivedAction);
                 socketServer.Listen();
 
                 if (socketServer.IsListening)
@@ -753,11 +659,65 @@ namespace IntDevs.Upgrade
         {
             if(this.checkBox1.Checked)
             {
-                IsRecordLog = true;
+                IsRecordSendLog = true;
             }
             else
             {
-                IsRecordLog = false;
+                IsRecordSendLog = false;
+            }
+        }
+
+        private async void btnSendManual_Click(object sender, EventArgs e)
+        {
+            string msg = this.txtSendManual.Text;
+            if (string.IsNullOrEmpty(msg))
+            {
+                return;
+            }
+
+            bool bIsHex = this.chkHex.Checked;
+            byte[] byData;
+
+            if (bIsHex == true)
+            {
+                msg = msg.Replace("0x", "");
+                byData = Tools.HexStringToByteArray(msg);
+            }
+            else
+            {
+                byData = Encoding.UTF8.GetBytes(msg);
+            }
+
+            await socketServer.BroadcastAsync(byData);
+
+            MessageBox.Show("成功发送出消息到所有客户端");
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.listBox1.SelectedItem != null)
+            {
+                this.txtSelect.Text = this.listBox1.SelectedItem.ToString();
+            }
+        }
+
+        private void lstBoxRec_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.lstBoxRec.SelectedItem != null)
+            {
+                this.txtSelect.Text = this.lstBoxRec.SelectedItem.ToString();
+            }
+        }
+
+        private void chkRecLog_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkRecLog.Checked)
+            {
+                this.IsRecordReceivedLog = true;
+            }
+            else
+            {
+                this.IsRecordReceivedLog = false;
             }
         } 
     }

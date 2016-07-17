@@ -33,8 +33,10 @@ namespace IntDevs.Upgrade
         private IPEndPoint _remoteEndPoint;
         private IPEndPoint _localEndPoint;
         private readonly IAsyncTcpSocketServerMessageDispatcher _dispatcher;
+        private Action<string> _msgUIReceivedAction;
 
         public AsyncTcpSocketServer Server { get { return _server; } }
+       
 
 
         private Stream _stream;
@@ -44,7 +46,8 @@ namespace IntDevs.Upgrade
             AsyncTcpSocketServerConfiguration configuration,
             IBufferManager bufferManager,
             IAsyncTcpSocketServerMessageDispatcher dispatcher,
-            AsyncTcpSocketServer server)
+            AsyncTcpSocketServer server,
+            Action<string> uiAction )
         {
             _sessionKey = Guid.NewGuid().ToString();
 
@@ -62,6 +65,8 @@ namespace IntDevs.Upgrade
                     (IPEndPoint)_tcpClient.Client.LocalEndPoint : null;
 
             _stream =_tcpClient.GetStream();
+
+            _msgUIReceivedAction = uiAction;
 
         }
 
@@ -282,7 +287,7 @@ namespace IntDevs.Upgrade
                     if (receiveCount == 0)
                         break;
 
-                    await _dispatcher.OnSessionDataReceived(this, _receiveBuffer, 0, receiveCount);
+                    await _dispatcher.OnSessionDataReceived(this, _receiveBuffer, 0, receiveCount,_msgUIReceivedAction);
 
                     //consumedLength = 0;
 

@@ -47,6 +47,14 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.lstBoxRec = new System.Windows.Forms.ListBox();
+            this.收到信息 = new System.Windows.Forms.Label();
+            this.txtSendManual = new System.Windows.Forms.TextBox();
+            this.btnSendManual = new System.Windows.Forms.Button();
+            this.chkHex = new System.Windows.Forms.CheckBox();
+            this.txtSelect = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.chkRecLog = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label5
@@ -178,7 +186,7 @@
             this.lstClients.ItemHeight = 12;
             this.lstClients.Location = new System.Drawing.Point(12, 132);
             this.lstClients.Name = "lstClients";
-            this.lstClients.Size = new System.Drawing.Size(217, 244);
+            this.lstClients.Size = new System.Drawing.Size(217, 292);
             this.lstClients.TabIndex = 44;
             // 
             // label4
@@ -196,8 +204,9 @@
             this.listBox1.ItemHeight = 12;
             this.listBox1.Location = new System.Drawing.Point(250, 132);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(519, 244);
+            this.listBox1.Size = new System.Drawing.Size(519, 124);
             this.listBox1.TabIndex = 46;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -211,7 +220,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(350, 105);
+            this.checkBox1.Location = new System.Drawing.Point(343, 105);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(132, 16);
             this.checkBox1.TabIndex = 48;
@@ -219,11 +228,92 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // lstBoxRec
+            // 
+            this.lstBoxRec.FormattingEnabled = true;
+            this.lstBoxRec.ItemHeight = 12;
+            this.lstBoxRec.Location = new System.Drawing.Point(250, 287);
+            this.lstBoxRec.Name = "lstBoxRec";
+            this.lstBoxRec.Size = new System.Drawing.Size(519, 100);
+            this.lstBoxRec.TabIndex = 49;
+            this.lstBoxRec.SelectedIndexChanged += new System.EventHandler(this.lstBoxRec_SelectedIndexChanged);
+            // 
+            // 收到信息
+            // 
+            this.收到信息.AutoSize = true;
+            this.收到信息.Location = new System.Drawing.Point(248, 263);
+            this.收到信息.Name = "收到信息";
+            this.收到信息.Size = new System.Drawing.Size(71, 12);
+            this.收到信息.TabIndex = 50;
+            this.收到信息.Text = "收到的消息:";
+            // 
+            // txtSendManual
+            // 
+            this.txtSendManual.Location = new System.Drawing.Point(250, 400);
+            this.txtSendManual.Name = "txtSendManual";
+            this.txtSendManual.Size = new System.Drawing.Size(341, 21);
+            this.txtSendManual.TabIndex = 51;
+            // 
+            // btnSendManual
+            // 
+            this.btnSendManual.Location = new System.Drawing.Point(668, 400);
+            this.btnSendManual.Name = "btnSendManual";
+            this.btnSendManual.Size = new System.Drawing.Size(101, 23);
+            this.btnSendManual.TabIndex = 52;
+            this.btnSendManual.Text = "手动发信息";
+            this.btnSendManual.UseVisualStyleBackColor = true;
+            this.btnSendManual.Click += new System.EventHandler(this.btnSendManual_Click);
+            // 
+            // chkHex
+            // 
+            this.chkHex.AutoSize = true;
+            this.chkHex.Location = new System.Drawing.Point(596, 403);
+            this.chkHex.Name = "chkHex";
+            this.chkHex.Size = new System.Drawing.Size(66, 16);
+            this.chkHex.TabIndex = 53;
+            this.chkHex.Text = "HEX字符";
+            this.chkHex.UseVisualStyleBackColor = true;
+            // 
+            // txtSelect
+            // 
+            this.txtSelect.Location = new System.Drawing.Point(570, 100);
+            this.txtSelect.Name = "txtSelect";
+            this.txtSelect.Size = new System.Drawing.Size(199, 21);
+            this.txtSelect.TabIndex = 54;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(481, 105);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(83, 12);
+            this.label3.TabIndex = 55;
+            this.label3.Text = "选中的消息行:";
+            // 
+            // chkRecLog
+            // 
+            this.chkRecLog.AutoSize = true;
+            this.chkRecLog.Location = new System.Drawing.Point(343, 265);
+            this.chkRecLog.Name = "chkRecLog";
+            this.chkRecLog.Size = new System.Drawing.Size(132, 16);
+            this.chkRecLog.TabIndex = 56;
+            this.chkRecLog.Text = "是否记录日志到文本";
+            this.chkRecLog.UseVisualStyleBackColor = true;
+            this.chkRecLog.CheckedChanged += new System.EventHandler(this.chkRecLog_CheckedChanged);
+            // 
             // FrmUpgradeSocket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 385);
+            this.ClientSize = new System.Drawing.Size(781, 433);
+            this.Controls.Add(this.chkRecLog);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtSelect);
+            this.Controls.Add(this.chkHex);
+            this.Controls.Add(this.btnSendManual);
+            this.Controls.Add(this.txtSendManual);
+            this.Controls.Add(this.收到信息);
+            this.Controls.Add(this.lstBoxRec);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listBox1);
@@ -270,6 +360,14 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ListBox lstBoxRec;
+        private System.Windows.Forms.Label 收到信息;
+        private System.Windows.Forms.TextBox txtSendManual;
+        private System.Windows.Forms.Button btnSendManual;
+        private System.Windows.Forms.CheckBox chkHex;
+        private System.Windows.Forms.TextBox txtSelect;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox chkRecLog;
 
     }
 }

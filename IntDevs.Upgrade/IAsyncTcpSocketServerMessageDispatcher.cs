@@ -9,7 +9,7 @@ namespace IntDevs.Upgrade
     public interface IAsyncTcpSocketServerMessageDispatcher
     {
         Task OnSessionStarted(AsyncTcpSocketSession session);
-        Task OnSessionDataReceived(AsyncTcpSocketSession session, byte[] data, int offset, int count);
+        Task OnSessionDataReceived(AsyncTcpSocketSession session, byte[] data, int offset, int count,Action<string> uiAction);
         Task OnSessionClosed(AsyncTcpSocketSession session);
     }
 
@@ -22,12 +22,15 @@ namespace IntDevs.Upgrade
             await Task.FromResult<SimpleMessageDispatcher>(this);
         }
 
-        public async Task OnSessionDataReceived(AsyncTcpSocketSession session, byte[] data, int offset, int count)
+        public async Task OnSessionDataReceived(AsyncTcpSocketSession session, byte[] data, int offset, int count, Action<string> uiAction)
         {
             var text = Encoding.UTF8.GetString(data, offset, count);
             //Console.Write(string.Format("Client : {0} --> ", session.RemoteEndPoint));
             //Console.WriteLine(text);
-            await session.SendAsync(Encoding.UTF8.GetBytes(text));
+            string hexText = Tools.ByteToHexStr(data);
+            uiAction(hexText);
+            await Task.FromResult<SimpleMessageDispatcher>(this);
+            //await session.SendAsync(Encoding.UTF8.GetBytes(text));
         }
 
         public async Task OnSessionClosed(AsyncTcpSocketSession session)
