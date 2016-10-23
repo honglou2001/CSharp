@@ -7,9 +7,11 @@ namespace Trainning.Algorithm
 {
     public class QuicklySort
     {
-        public static List<int> arrToSort = new List<int>() { 1, 6, 5, 9, 7, 5,11,22,42,10,22 };
+        public static List<int> arrToSort = new List<int>() { 6, 1, 5, 9, 7, 5,11,22,42,10,22 };
         public static void QuilckSortArr(List<int> arr,int low,int high)
         {
+            Console.WriteLine(ListToString(arr));
+
             if (low >= high) return;
             //把首位作为比较的枢轴值
             int pivot = arr[low];
@@ -45,6 +47,12 @@ namespace Trainning.Algorithm
             QuilckSortArr(arr, low, i-1);
             //对枢轴的右端进行排序
             QuilckSortArr(arr, i +1, high);
+        }
+
+        private static string ListToString(List<int> listInt)
+        {
+            string str = string.Join(",", listInt.ToArray());
+            return str;
         }
     }
 }
